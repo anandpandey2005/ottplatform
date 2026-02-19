@@ -8,10 +8,17 @@ const UserSchema = new Schema(
       lowercase: true,
       unique: true,
     },
-    password: {
-      type: String,
-      trim: true,
-      required: [true, "password must be non-empty"],
+    emailOtp: {
+      type: Number,
+      default: null,
+    },
+    emailOtpExpiry: {
+      type: Date,
+      default: null,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },
