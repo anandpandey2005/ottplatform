@@ -1,12 +1,48 @@
 import mongoose, { Schema } from "mongoose";
+
 const MediaSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       trim: true,
-      required: [true, "name msut be non-empty"],
+      // required: [true, "Title is required"],
     },
-    
+    genre: [
+      {
+        type: String,
+        default: null,
+      },
+    ],
+    synopsis: {
+      type: String,
+      default: null,
+    },
+
+    cloudinaryId: {
+      type: String,
+      // required: true,
+    },
+    displayUrl: {
+      type: String,
+      // required: true,
+    },
+    duration: {
+      type: Number,
+      default: 0,
+    },
+    format: {
+      type: String,
+    },
+    resolution: {
+      width: Number,
+      height: Number,
+    },
+    bytes: {
+      type: Number,
+    },
+    thumbnailUrl: {
+      type: String,
+    },
   },
   { timestamps: true },
 );
