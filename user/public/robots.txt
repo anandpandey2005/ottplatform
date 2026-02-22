@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sharingiscarying.netlify.app/sitemap.xml
