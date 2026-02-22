@@ -1,12 +1,19 @@
 const normalizeBaseUrl = (rawBaseUrl) => {
-  if (!rawBaseUrl) return "/api";
+  if (!rawBaseUrl) return "https://sharingiscaring-qtim.onrender.com";
   return rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
 };
 
-const API_BASE_URL = normalizeBaseUrl(import.meta.env.VITE_API_URL);
+const API_BASE_URL = normalizeBaseUrl("https://sharingiscaring-qtim.onrender.com");
 
 const request = async (path, options = {}) => {
-  const response = await fetch(`${API_BASE_URL}${path}`, options);
+  let response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, options);
+  } catch {
+    throw new Error("Server unavailable. Please check Render deployment and try again.");
+  }
+
   const payload = await response.json().catch(() => null);
 
   if (!response.ok) {
