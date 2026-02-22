@@ -1,9 +1,9 @@
 const normalizeBaseUrl = (rawBaseUrl) => {
-  if (!rawBaseUrl) return "https://sharingiscaring-qtim.onrender.com";
+  if (!rawBaseUrl) return "https://sharingiscaring-4c58.onrender.com";
   return rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
 };
 
-const API_BASE_URL = normalizeBaseUrl("https://sharingiscaring-qtim.onrender.com");
+const API_BASE_URL = normalizeBaseUrl("https://sharingiscaring-4c58.onrender.com");
 
 const request = async (path, options = {}) => {
   let response;

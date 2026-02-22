@@ -4,6 +4,7 @@ import cors from "cors";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import mongoose from "mongoose";
 import { fileURLToPath } from "url";
 import { getMedia } from "./controller/getMedia.controller.js";
 import { createMedia, deleteMedia } from "./controller/upload.controller.js";
@@ -61,7 +62,22 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(cookieParser());
 app.use("/uploads", express.static(uploadDirectory));
 
-app.get("/", getMedia);
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Server is running",
+  });
+});
+
+app.get("/health", (req, res) => {
+  const isDatabaseReady = mongoose.connection.readyState === 1;
+
+  return res.status(isDatabaseReady ? 200 : 503).json({
+    success: isDatabaseReady,
+    database: isDatabaseReady ? "connected" : "disconnected",
+  });
+});
+
 app.get("/media", getMedia);
 app.get("/getMedia", getMedia);
 
