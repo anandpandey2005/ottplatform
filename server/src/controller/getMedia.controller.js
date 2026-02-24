@@ -1,6 +1,6 @@
 import { Media } from "../models/media.models.js";
 import mongoose from "mongoose";
-
+ 
 const getMedia = async (req, res) => {
   try {
     if (mongoose.connection.readyState !== 1) {
